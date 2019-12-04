@@ -9,4 +9,4 @@ right = pd.DataFrame({'key': ['K0', 'K1', 'K2', 'K3'],
                       'D': ['D0', 'D1', 'D2', 'D3']})
 print(pd.merge(left, right, how='left', on='key'))
 
-print(np.random.rand(4, 1))
+print(np.random.rand(10, 2))
