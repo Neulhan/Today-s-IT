@@ -6,10 +6,5 @@ from .crawler.TechNeedle import crawling as tech_needle_crawling
 from .crawler.ZDNet import crawling as zd_net_crawling
 
 
-def crawling_all():
-    # it_news_crawling()
-    # it_world_crawling()
-    # k_bench_crawling()
-    # naver_crawling()
+def crawling_tech_needle():
     tech_needle_crawling()
-    # zd_net_crawling()

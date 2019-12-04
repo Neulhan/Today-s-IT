@@ -9,5 +9,3 @@ def crawling():
 
     return 0
 
-
-crawling()

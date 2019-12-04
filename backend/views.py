@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.utils import json
 from rest_framework.views import APIView
 
-from backend.crawling import crawling_all
+from backend.crawling import *
 
 import pandas as pd
 import numpy as np
@@ -18,17 +18,16 @@ from backend.serializers import NewsSerializer
 
 
 class NewsList(APIView):
-
-    # def crawling(self, request):
-    #     crawling_all()
-    #     return Response()
-
     def get(self, request):
-        np_obj = np.random.rand(10, 2)
-        for i in np_obj:
-            News.objects.create(title=str(i[0]), content=str(i[1]))
         s = NewsSerializer(News.objects.all(), many=True)
-        data = json.dumps({'pets': s.data})
+        data = {}
+        data['테크니들'] = s.data
 
         # self.crawling(request)
         return Response(data)
+
+
+class NewsCrawlingTechNeedle(APIView):
+    def get(self, request):
+        crawling_tech_needle()
+        return Response()
