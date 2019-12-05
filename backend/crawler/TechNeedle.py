@@ -4,12 +4,18 @@ from backend.models import News
 
 
 def crawling():
+    print('크롤링 시작점')
     reference = '테크니들'
     url = 'http://techneedle.com/'
+    print('크롤링 시작점2')
     html = requests.get(url).text
+    print('크롤링 시작점3')
+
     soup = bs(html, 'html.parser')
     news_list = soup.select('.entry-title > a')
+    print(news_list)
     for news in news_list:
+        print(news.text)
         title = news.text
         # check = News.objects.filter(title=title)
         if title == 0:
@@ -27,7 +33,7 @@ def crawling():
                                 written_date=time,
                                 url=url,
                                 reference=reference)
-
+    print('크롤링 끝점')
     return 0
     # title = models.TextField()
     # content = models.TextField()

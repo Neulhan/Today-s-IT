@@ -32,7 +32,5 @@ class NewsList(APIView):
 
 class NewsCrawlingTechNeedle(APIView):
     def get(self, request):
-        print(1, datetime.now())
         crawling_tech_needle()
-        print(2, datetime.now())
         return Response(123)
