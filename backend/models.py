@@ -11,6 +11,9 @@ class News(models.Model):
     written_date = models.TextField(default='')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
 
 class KeyWord(models.Model):
     key = models.TextField()
