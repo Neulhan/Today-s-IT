@@ -9,8 +9,7 @@ def crawling():
     url = 'http://techneedle.com/'
     print('크롤링 시작점2')
     html = requests.get(url).text
-    print('크롤링 시작점3')
-
+    print(html)
     soup = bs(html, 'html.parser')
     news_list = soup.select('.entry-title > a')
     print(news_list)
