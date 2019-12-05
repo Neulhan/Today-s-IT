@@ -1,3 +1,4 @@
+import requests
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -29,5 +30,7 @@ class NewsList(APIView):
 
 class NewsCrawlingTechNeedle(APIView):
     def get(self, request):
+        print(1)
         crawling_tech_needle()
-        return Response()
+        print(2)
+        return Response(123)
