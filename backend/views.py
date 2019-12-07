@@ -16,7 +16,7 @@ from backend.crawling import *
 import pandas as pd
 import numpy as np
 
-from backend.models import News
+from backend.models import News, AllContent, KeyWord
 from backend.serializers import NewsSerializer
 
 
@@ -34,3 +34,23 @@ class NewsCrawlingTechNeedle(APIView):
     def get(self, request):
         crawling_tech_needle()
         return Response(123)
+
+
+class GetAllContent(APIView):
+    def get(self, request):
+        s = NewsSerializer(AllContent.objects.get(id=1))
+        data = {}
+        data['content_all'] = s.data
+
+        return Response(data)
+
+
+class GetNewsByKeyword(APIView):
+    def get(self, request, pk):
+        keyword_obj = KeyWord.objects.get(name=pk)
+        response_query = keyword_obj.key_from.all()
+        s = NewsSerializer(response_query, many=True)
+        data = {}
+        data['key_from'] = s.data
+
+        return Response(data)

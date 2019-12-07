@@ -1,5 +1,7 @@
 import json
 import re
+
+import jpype
 from konlpy.tag import Okt
 from collections import Counter
 import requests

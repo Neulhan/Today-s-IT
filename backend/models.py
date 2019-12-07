@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class News(models.Model):
     title = models.TextField()
@@ -16,9 +14,19 @@ class News(models.Model):
 
 
 class KeyWord(models.Model):
-    key = models.TextField()
-    count = models.IntegerField()
+    name = models.CharField(max_length=20)
+    count = models.IntegerField(default=0)
+    key_from = models.ManyToManyField(News)
+
+    class Meta:
+        ordering = ('-count', 'name')
+
+    def __str__(self):
+        return self.name
 
 
 class AllContent(models.Model):
     text = models.TextField()
+
+    def __str__(self):
+        return "모든 뉴스 내용을 모은 덩어리"
