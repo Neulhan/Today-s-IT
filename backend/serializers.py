@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from backend.models import News
+from backend.models import News, KeyWord
 
 
 class NewsSerializer(serializers.Serializer):
@@ -12,3 +12,13 @@ class NewsSerializer(serializers.Serializer):
     reference = serializers.CharField(max_length=100000, default='')
     written_date = serializers.CharField(max_length=100000, default='')
     created_at = serializers.DateTimeField()
+
+
+class KeywordSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=20)
+    count = serializers.IntegerField(default=0)
+
+    class Meta:
+        model = KeyWord
+        fields = ('username',)
+        ordering = ('-count', 'name')

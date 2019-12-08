@@ -30,3 +30,4 @@ class AllContent(models.Model):
 
     def __str__(self):
         return "모든 뉴스 내용을 모은 덩어리"
+

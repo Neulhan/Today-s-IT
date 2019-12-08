@@ -17,7 +17,7 @@ import pandas as pd
 import numpy as np
 
 from backend.models import News, AllContent, KeyWord
-from backend.serializers import NewsSerializer
+from backend.serializers import NewsSerializer, KeywordSerializer
 
 
 class NewsList(APIView):
@@ -52,5 +52,15 @@ class GetNewsByKeyword(APIView):
         s = NewsSerializer(response_query, many=True)
         data = {}
         data['key_from'] = s.data
+
+        return Response(data)
+
+
+class GetKeywordRank(APIView):
+    def get(self, request):
+        response_query = KeyWord.objects.all()[:10]
+        s = KeywordSerializer(response_query, many=True)
+        data = {}
+        data['keyword_rank'] = s.data
 
         return Response(data)

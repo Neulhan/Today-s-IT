@@ -5,5 +5,6 @@ from backend import views
 urlpatterns = [
     path('', views.NewsList.as_view()),
     path('crawling/', views.NewsCrawlingTechNeedle.as_view()),
-    path('news/<str:pk>/', views.GetNewsByKeyword.as_view())
+    path('news/<str:pk>/', views.GetNewsByKeyword.as_view()),
+    path('keyword-rank/', views.GetKeywordRank.as_view())
 ]
