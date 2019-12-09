@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'konlpy',
     'requests',
-    'bs4'
+    'bs4',
+    'home'
 ]
 
 MIDDLEWARE = [

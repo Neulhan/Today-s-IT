@@ -16,7 +16,7 @@ from backend.crawling import *
 import pandas as pd
 import numpy as np
 
-from backend.models import News, AllContent, KeyWord
+from backend.models import News, AllContent, KeyWord, KeyWordHistory
 from backend.serializers import NewsSerializer, KeywordSerializer
 
 
@@ -64,3 +64,19 @@ class GetKeywordRank(APIView):
         data['keyword_rank'] = s.data
 
         return Response(data)
+
+
+class KeyWordInitialization(APIView):
+    def get(self, request):
+        keys = KeyWord.objects.all()
+        for key in keys:
+            key_history_obj = KeyWordHistory.objects.create(
+                name=key.name,
+                count=key.count
+            )
+            for news in key.key_from.all():
+                key_history_obj.key_from.add(news)
+
+        keys.delete()
+        return Response(100)
+

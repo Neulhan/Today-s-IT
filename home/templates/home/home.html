@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>오늘의 IT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        td{
+            border: 1px solid #E6E6E6;
+            padding: 10px;
+        }
+        tr:first-child{
+            background-color: #042494;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="inner">
+                <h1 style="margin-top: 100px">오늘의 IT API 서버입니다.</h1>
+
+
+                <script>
+                    window.onload = function () {
+                        const span = document.getElementById("server_address");
+                        span.innerText = location.href;
+                    }
+                </script>
+                <table>
+                    <tr>
+                        <td>현재 서버 주소</td>
+                        <td id="server_address"></td>
+                    </tr>
+                    <tr>
+                        <td>api/</td>
+                        <td>전체 IT News objects 를 json 형식으로 response</td>
+                    </tr>
+                    <tr>
+                        <td>api/crawling/</td>
+                        <td>crawling 실행</td>
+                    </tr>
+                    <tr>
+                        <td>api/news/키워드/</td>
+                        <td>특정 키워드가 추출된 원본 News objects 를 json 형식으로 response</td>
+                    </tr>
+                    <tr>
+                        <td>api/keyword-rank/</td>
+                        <td>KeyWord 를 order_by count descent 로 10개 response</td>
+                    </tr>
+                    <tr>
+                        <td>api/keyword-initialization/</td>
+                        <td>KeyWord objects 를 KeyWordHistory 로 옮김 (KeyWord table 은 비워짐)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

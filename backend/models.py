@@ -25,6 +25,19 @@ class KeyWord(models.Model):
         return self.name
 
 
+class KeyWordHistory(models.Model):
+    name = models.CharField(max_length=20)
+    count = models.IntegerField(default=0)
+    key_from = models.ManyToManyField(News)
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-count', 'name')
+
+    def __str__(self):
+        return self.name
+
+
 class AllContent(models.Model):
     text = models.TextField()
 
