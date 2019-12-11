@@ -15,3 +15,5 @@ Okt = Okt
 Counter = Counter
 bs = bs
 datetime = datetime
+
+except_list = ['것', '수', '기술']

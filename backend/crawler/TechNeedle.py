@@ -4,17 +4,18 @@ from backend.models import News, AllContent, KeyWord
 
 
 def crawling():
-    print('크롤링 시작점')
+    print('크롤링 시작 : TechNeedle')
     nlp = Okt()
     reference = '테크니들'
     url = 'http://techneedle.com/'
-    print('크롤링 시작점2')
+
     html = requests.get(url).text
     soup = bs(html, 'html.parser')
-    news_list = soup.select('.entry-title > a')
-    print(news_list)
-    for news in news_list:
+    news_list = soup.select('.post-inside .entry-title > a')
+
+    for news_num, news in enumerate(news_list, 1):
         title = news.text
+        print(f'({news_num}/{len(news_list)}) {title} 작업중')
         # check = News.objects.filter(title=title)
         if title == 0:
             pass
@@ -22,7 +23,7 @@ def crawling():
             try:
                 News.objects.get(title=title)
             except Exception as e:
-                title_10 = title*10
+                title_5 = title*5
                 url = news.get('href')
                 html = requests.get(url).text
                 soup = bs(html, 'html.parser')
@@ -34,24 +35,26 @@ def crawling():
                                                        url=url,
                                                        reference=reference)
 
-                nouns = nlp.nouns(content+title_10)
+                nouns = nlp.nouns(content+title_5)
                 count = Counter(nouns)
-                print(count.most_common(5))
+
                 for item in count.most_common(5):
                     word = item[0]
                     number = item[1]
-                    keyword_obj = KeyWord.objects.get_or_create(name=word)[0]
-                    print(keyword_obj)
-                    origin_count = keyword_obj.count
-                    print(origin_count)
-                    print(type(origin_count))
-                    keyword_obj.count = origin_count + number
-                    keyword_obj.key_from.add(created_news_obj)
-                    keyword_obj.save()
 
-    print('크롤링 끝점')
+                    if word in except_list:
+                        pass
+                    else:
+                        keyword_obj = KeyWord.objects.get_or_create(name=word)[0]
+
+                        origin_count = keyword_obj.count
+
+                        keyword_obj.count = origin_count + number
+                        keyword_obj.key_from.add(created_news_obj)
+                        keyword_obj.save()
+
+    print('크롤링 끝 : TechNeedle')
 
 
 if __name__ == '__main__':
     crawling()
-

@@ -24,7 +24,7 @@ class NewsList(APIView):
     def get(self, request):
         s = NewsSerializer(News.objects.all(), many=True)
         data = {}
-        data['테크니들'] = s.data
+        data['news'] = s.data
 
         # self.crawling(request)
         return Response(data)
