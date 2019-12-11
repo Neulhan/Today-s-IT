@@ -8,4 +8,5 @@ urlpatterns = [
     path('news/<str:pk>/', views.GetNewsByKeyword.as_view()),
     path('keyword-rank/', views.GetKeywordRank.as_view()),
     path('keyword-initialization/', views.KeyWordInitialization.as_view()),
+    path('del/', views.Delete.as_view()),
 ]

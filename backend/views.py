@@ -80,3 +80,9 @@ class KeyWordInitialization(APIView):
         keys.delete()
         return Response(100)
 
+
+class Delete(APIView):
+    def get(self, request):
+        KeyWord.objects.all().delete()
+        News.objects.all().delete()
+        return Response(100)
