@@ -5,6 +5,8 @@ from .crawler.Naver import crawling as naver_crawling
 from .crawler.TechNeedle import crawling as tech_needle_crawling
 from .crawler.ZDNet import crawling as zd_net_crawling
 from .crawler.Bloter import crawling as bloter_crawling
+# from .crawler.digital_daily import crawling as digital_daily_crawling
+from .crawler.cio_korea import crawling as cio_korea_crawling
 from selenium import webdriver
 
 
@@ -18,10 +20,12 @@ def run_driver():
 
 
 def crawling_tech_needle():
-    # tech_needle_crawling()
-    # bloter_crawling()
-    # it_news_crawling()
+    tech_needle_crawling()
+    bloter_crawling()
+    it_news_crawling()
+    cio_korea_crawling()
 
-    driver = run_driver()
+    # digital_daily_crawling()
 
-    zd_net_crawling(driver)
+    # driver = run_driver()
+    # zd_net_crawling(driver)

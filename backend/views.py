@@ -85,4 +85,5 @@ class Delete(APIView):
     def get(self, request):
         KeyWord.objects.all().delete()
         News.objects.all().delete()
+        KeyWordHistory.objects.all().delete()
         return Response(100)

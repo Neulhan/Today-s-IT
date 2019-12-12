@@ -64,6 +64,7 @@ def crawling():
                         keyword_obj.count = origin_count + number
                         keyword_obj.key_from.add(created_news_obj)
                         keyword_obj.save()
+
     print('크롤링 끝 : Bloter')
 
 

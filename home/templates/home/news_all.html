@@ -2,9 +2,102 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>오늘의 IT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+
+        @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+        body{
+            font-family: "Noto Sans KR Thin", 'Noto Sans KR', sans-serif;
+        }
+        table{
+            margin: 0 auto;
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        td{
+            border: 1px solid #E6E6E6;
+            padding: 10px;
+        }
+        tr:first-child{
+            background-color: #042494;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="inner">
+                <h1 style="margin-top: 100px">🕋오늘의 IT API 뉴스 목록</h1>
+
+                <table>
+                    <tr>
+                        <td>번호</td>
+                        <td>제목</td>
+                        <td>url</td>
+                        <td>출처</td>
+                        <td>기사날짜</td>
+                    </tr>
+                    {% for i in news %}
+                        <tr>
+                            <td>{{ i.pk }}</td>
+                            <td>{{ i.title }}</td>
+                            <td>{{ i.url }}</td>
+                            <td>{{ i.reference }}</td>
+                            <td>{{ i.written_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="inner">
+                <h1 style="margin-top: 100px">🕋오늘의 IT API 키워드 목록</h1>
+
+                <table>
+                    <tr>
+                        <td>번호</td>
+                        <td>이름</td>
+                        <td>count</td>
+                    </tr>
+                    {% for i in keywords %}
+                        <tr>
+                            <td>{{ i.pk }}</td>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.count }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="inner">
+                <h1 style="margin-top: 100px">🕋오늘의 IT API 키워드 history 목록</h1>
+
+                <table>
+                    <tr>
+                        <td>번호</td>
+                        <td>이름</td>
+                        <td>count</td>
+                        <td>날짜</td>
+                    </tr>
+                    {% for i in keywords_h %}
+                        <tr>
+                            <td>{{ i.pk }}</td>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.count }}</td>
+                            <td>{{ i.date }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<footer style="background-color: #E6E6E6; height: 200px; text-align:  center; width: 100%">
+    <p>오늘의 IT API 서버</p>
+    <p>개발자 : Neulhan</p>
+</footer>
 </body>
 </html>
