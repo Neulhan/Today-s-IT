@@ -48,7 +48,7 @@ class GetAllContent(APIView):
 class GetNewsByKeyword(APIView):
     def get(self, request, pk):
         keyword_obj = KeyWord.objects.get(name=pk)
-        response_query = keyword_obj.key_from.all()
+        response_query = keyword_obj.key_from.all().order_by("-written_date")
         s = NewsSerializer(response_query, many=True)
         data = {}
         data['key_from'] = s.data
@@ -58,7 +58,17 @@ class GetNewsByKeyword(APIView):
 
 class GetKeywordRank(APIView):
     def get(self, request):
-        response_query = KeyWord.objects.all()[:10]
+        response_query = KeyWord.objects.all()[:20]
+        s = KeywordSerializer(response_query, many=True)
+        data = {}
+        data['keyword_rank'] = s.data
+
+        return Response(data)
+
+
+class GetKeywordRankByDate(APIView):
+    def get(self, request, date):
+        response_query = KeyWordHistory.objects.filter(date=date)[:10]
         s = KeywordSerializer(response_query, many=True)
         data = {}
         data['keyword_rank'] = s.data

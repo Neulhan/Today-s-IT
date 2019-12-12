@@ -4,6 +4,7 @@ from backend.models import News, KeyWord
 
 
 class NewsSerializer(serializers.Serializer):
+    pk = serializers.IntegerField()
     title = serializers.CharField(max_length=100000)
     content = serializers.CharField(max_length=100000, default='')
     exposed_sequence = serializers.IntegerField(default=0)
