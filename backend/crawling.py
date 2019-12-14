@@ -20,7 +20,7 @@ def run_driver():
 
 
 def crawling_tech_needle():
-    tech_needle_crawling()
+    # tech_needle_crawling()
     bloter_crawling()
     it_news_crawling()
     cio_korea_crawling()
