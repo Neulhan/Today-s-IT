@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 ]
 
 CRONJOBS = [
-    ('* * * * *', 'django.core.management.crawling', ['crawling'], {}, '>> '+BASE_DIR + '/log/crawling 2>&1'),
+    ('* * * * *', 'backend.crawling.crawling_tech_needle', ['crawling'], {}, '>> '+BASE_DIR + '/log/crawling 2>&1'),
 ]
 
 STATIC_URL = '/static/'
