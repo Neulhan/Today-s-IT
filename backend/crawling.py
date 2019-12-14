@@ -1,3 +1,4 @@
+from backend.models import KeyWord, KeyWordHistory
 from .crawler.ITnews import crawling as it_news_crawling
 from .crawler.ITworld import crawling as it_world_crawling
 from .crawler.Kbench import crawling as k_bench_crawling
@@ -29,3 +30,17 @@ def crawling_tech_needle():
 
     # driver = run_driver()
     # zd_net_crawling(driver)
+
+
+def keyword_initialize():
+    keys = KeyWord.objects.all()
+    for key in keys:
+        key_history_obj = KeyWordHistory.objects.create(
+            name=key.name,
+            count=key.count
+        )
+        for news in key.key_from.all():
+            key_history_obj.key_from.add(news)
+    print("키워드 전환 완료")
+    keys.delete()
+    print("기존 키워드 삭제")

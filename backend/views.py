@@ -78,16 +78,7 @@ class GetKeywordRankByDate(APIView):
 
 class KeyWordInitialization(APIView):
     def get(self, request):
-        keys = KeyWord.objects.all()
-        for key in keys:
-            key_history_obj = KeyWordHistory.objects.create(
-                name=key.name,
-                count=key.count
-            )
-            for news in key.key_from.all():
-                key_history_obj.key_from.add(news)
-
-        keys.delete()
+        keyword_initialize()
         return Response(100)
 
 

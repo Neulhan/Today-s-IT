@@ -42,8 +42,14 @@ INSTALLED_APPS = [
     'konlpy',
     'requests',
     'bs4',
-    'home'
+    'home',
+    'django_crontab'
 ]
+
+CRONJOBS = [
+    ('*/1 0 * * *', 'django.core.management.crawling', ['crawling'], {}, '>> '+BASE_DIR + '/log/crawling 2>&1'),
+]
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
